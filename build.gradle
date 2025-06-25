@@ -21,25 +21,45 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		url 'https://mvn.topobyte.de/'   // 🔴 sondaki slash önemli
+		content { includeGroup 'de.topobyte' }   // taramayı hızlandırır
+	}
+
+	maven {
+		url 'https://mvn.slimjars.com/'     // aynı şekilde "/" sonuna
+		content { includeGroup 'com.slimjars.trove4j' }
+	}
+
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'org.postgresql:postgresql'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'org.springframework.boot:spring-boot-starter-security'
+implementation 'org.springframework.boot:spring-boot-starter-validation'
+implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+implementation 'de.topobyte:osm4j-core:1.4.1'
+implementation 'de.topobyte:osm4j-pbf:1.4.1'
+
+implementation 'org.jgrapht:jgrapht-core:1.5.2'
+implementation 'it.unimi.dsi:fastutil:8.5.13'
+
+
+
+
+compileOnly 'org.projectlombok:lombok'
+runtimeOnly 'org.postgresql:postgresql'
+annotationProcessor 'org.projectlombok:lombok'
+testImplementation 'org.springframework.boot:spring-boot-starter-test'
+testImplementation 'org.springframework.security:spring-security-test'
+testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+useJUnitPlatform()
 }
